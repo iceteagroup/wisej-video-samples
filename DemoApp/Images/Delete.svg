@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--Generator: Xara Designer (www.xara.com), SVG filter version: 6.6.0.8-->
+<svg fill="none" fill-rule="evenodd" stroke="black" stroke-width="0.501" stroke-linejoin="bevel" stroke-miterlimit="10" font-family="Times New Roman" font-size="16" style="font-variant-ligatures:none" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" overflow="visible" width="96pt" height="96pt" viewBox="0 -96 96 96">
+ <defs>
+	</defs>
+ <g id="Layer 1" transform="scale(1 -1)">
+  <path d="M 65.473,48.001 L 87.503,70.03 C 90.947,73.475 90.943,79.071 87.483,82.528 L 82.526,87.483 C 79.072,90.94 73.475,90.949 70.029,87.504 L 48.002,65.472 L 25.972,87.502 C 22.523,90.949 16.929,90.939 13.473,87.483 L 8.517,82.527 C 5.06,79.071 5.051,73.477 8.498,70.028 L 30.528,48.001 L 8.502,25.972 C 5.052,22.523 5.063,16.929 8.518,13.474 L 13.475,8.517 C 16.933,5.059 22.525,5.05 25.974,8.5 L 48.002,30.525 L 70.029,8.5 C 73.475,5.053 79.07,5.057 82.526,8.517 L 87.483,13.474 C 90.939,16.929 90.946,22.526 87.503,25.972 L 65.473,48.001 Z" stroke-linejoin="miter" stroke="none" stroke-width="0.991" fill-rule="nonzero" fill="#232323" marker-start="none" marker-end="none"/>
+ </g>
+</svg>

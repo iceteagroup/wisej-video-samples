@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CA1847: Use char literal for a single character lookup
+dotnet_diagnostic.CA1847.severity = none
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none
