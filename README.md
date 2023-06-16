@@ -26,7 +26,7 @@ and never regretted it. It's a very fast ORM, too.
 
 The following classes are included:
 
-## BindingList.cs
+## ListBinder.cs
 
 A Helper class that makes life easier with BindingSources in conjunction with DataGridViews and add/change/delete operations.
 It contains methods for adding and deleting DbEntity objects. Deleted items go into the DeletedItems list and the class

@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BindingList.cs" />
+    <Compile Include="ListBinder.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="DataBinder.cs" />
     <Compile Include="DateUtils.cs" />

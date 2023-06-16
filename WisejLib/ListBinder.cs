@@ -10,24 +10,24 @@ namespace WisejLib
     /// A Helper class that makes life easier with BindingSources. It contains methods for adding and deleteing DbEntity objects.
     /// Deleted items go into the DeletedItems list.
     /// </summary>
-    /// <typeparam name="T">The type that this BindingList contains</typeparam>
-    public class BindingList<T> where T : DbEntity
+    /// <typeparam name="T">The type that this ListBinder contains</typeparam>
+    public class ListBinder<T> where T : DbEntity
     {
         /// <summary>
         /// Empty constructor, you will have to set DataItems yourself
         /// </summary>
-        public BindingList()
+        public ListBinder()
         {
             // make sure that property DataItems is not null by default
             BindingSource.DataSource = new List<T>();
         }
 
         /// <summary>
-        /// Create a new BindingList object and sets BindingList.BindingSource.DataSource to 
+        /// Create a new ListBinder object and sets ListBinder.BindingSource.DataSource to 
         /// the passed list of items
         /// </summary>
-        /// <param name="dataItems">The list to assign to BindingList.BindingSource.DataSource</param>
-        public BindingList(List<T> dataItems)
+        /// <param name="dataItems">The list to assign to ListBinder.BindingSource.DataSource</param>
+        public ListBinder(List<T> dataItems)
         {
             BindingSource.DataSource = dataItems;
         }
@@ -61,15 +61,15 @@ namespace WisejLib
         public List<T> DeletedItems { get; } = new List<T>();
 
         /// <summary>
-        /// Declaration of an event handler that is fired whenever items in the BindingList change
+        /// Declaration of an event handler that is fired whenever items in the ListBinder change
         /// </summary>
         /// <param name="item">The changed item. Cou can inspect item.State to know what happend</param>
-        public delegate void BindingListChangedEventHandler(T item);
+        public delegate void ListBinderChangedEventHandler(T item);
 
         /// <summary>
-        /// Event that is fired whenever items in the BindingList change
+        /// Event that is fired whenever items in the ListBinder change
         /// </summary>
-        public event BindingListChangedEventHandler BindingListChanged;
+        public event ListBinderChangedEventHandler ListBinderChanged;
 
         /// <summary>
         /// Adds a new item to the BindingSource
@@ -80,7 +80,7 @@ namespace WisejLib
             // make sure that a similar item doesn't exist in the DeleteItems list
             item.State = DbState.New;
             BindingSource.Add(item);
-            BindingListChanged?.Invoke(item);
+            ListBinderChanged?.Invoke(item);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace WisejLib
                 DeletedItems.Add(item);
             }
             BindingSource.Remove(item);
-            BindingListChanged?.Invoke(item);
+            ListBinderChanged?.Invoke(item);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace WisejLib
                 item.State = DbState.Changed;
             var index = BindingSource.IndexOf(item);
             BindingSource.ResetItem(index);
-            BindingListChanged?.Invoke(item);
+            ListBinderChanged?.Invoke(item);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace WisejLib
             var index = BindingSource.IndexOf(existingItem);
             BindingSource[index] = newItem;
             BindingSource.ResetItem(index);
-            BindingListChanged?.Invoke(newItem);
+            ListBinderChanged?.Invoke(newItem);
         }
         /// <summary>
         /// Replace an item by a different one. The old item does not go into the DeletedItems list.
@@ -170,7 +170,7 @@ namespace WisejLib
             var index = BindingSource.IndexOf(existingItem);
             BindingSource[index] = newItem;
             BindingSource.ResetItem(index);
-            BindingListChanged?.Invoke(newItem);
+            ListBinderChanged?.Invoke(newItem);
         }
 
         /// <summary>
