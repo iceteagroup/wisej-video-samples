@@ -107,6 +107,8 @@ namespace DemoApp.Forms
             // Fonts are created only once and can be used everywhere
             Globals.InitFonts(this.Font);
 
+            Utils.MsgBox("This app|Hint|Brush teeth twice a day", MessageBoxIcon.Hand);
+
             var AppName = Application.Title;
 
             // it is assumned that the sqlite database is in the same directory as the executable

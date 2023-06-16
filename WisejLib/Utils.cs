@@ -146,7 +146,7 @@ namespace WisejLib
             if (!string.IsNullOrEmpty(title))
                 text = $"<p style=\"font-weight: bold; font-size: 1.25em\">{title}</p><p>{text}</p>";
 
-            return MessageBox.Show(text, IconToCaption(icon), buttons, icon);
+            return MessageBox.Show(text, caption, buttons, icon);
         }
  
         /// <summary>
