@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DemoApp/bin
+/Schematix/bin/Debug
+/Schematix/obj/Debug
+/Schematix/obj/project.assets.json
+/Schematix/obj/project.nuget.cache
+/Schematix/obj/Schematix.csproj.nuget.dgspec.json
+/Schematix/obj/Schematix.csproj.nuget.g.props
+/Schematix/obj/Schematix.csproj.nuget.g.targets
+/WisejLib/bin/Debug
+/WisejLib/obj/Debug
+/WisejLib/obj/project.assets.json
+/WisejLib/obj/project.nuget.cache
+/WisejLib/obj/WisejLib.csproj.nuget.dgspec.json
+/WisejLib/obj/WisejLib.csproj.nuget.g.props
+/WisejLib/obj/WisejLib.csproj.nuget.g.targets
+/.vs
+/DemoApp/obj
