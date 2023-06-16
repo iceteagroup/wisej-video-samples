@@ -236,6 +236,30 @@ namespace WisejLib
         }
 
         /// <summary>
+        /// This method combines all elements of a list in a string. The method uses a buildFunction delegate
+        /// to modifiy each individual element before it is added to the resulting string.
+        /// However, when your buildFunction parameter looks like this: "s => s" then 
+        /// consider to use "string.Join(separator, list)"
+        /// </summary>
+        /// <param name="list">The list whose elements are to be put into the resulting string</param>
+        /// <param name="buildFunction">A function delegate that passes the element before it is 
+        /// added to the resulting and expects the string that is to be added eventually. This
+        /// enables the caller to add prefixes or postfixes to the elements before they are added 
+        /// to the resulting string</param>
+        /// <param name="separator">Separates the elements, default is a comma</param>
+        /// <returns>A string that contains all elements of the list</returns>
+        public static string ListAsString<T>(this List<T> list, Func<T, string> buildFunction, string separator = ", ")
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < list.Count; i++)
+            {
+                var expression = buildFunction(list[i]);
+                sb.Append(i > 0 ? $"{separator}{expression}" : expression);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// This method combines all elements of a list in a string. The difference to 
         /// string.Join(separator, list) is that this method uses a buildFunction delegate
         /// to modifiy each individual element before it is added to the resulting string.
@@ -251,14 +275,7 @@ namespace WisejLib
         /// <returns>A string that contains all elements of the list</returns>
         public static string ListAsString(this List<string> list, Func<string, string> buildFunction, string separator = ", ")
         {
-
-            var sb = new StringBuilder();
-            for (int i = 0; i < list.Count; i++)
-            {
-                var expression = buildFunction(list[i]);
-                sb.Append(i > 0 ? $"{separator}{expression}" : expression);
-            }
-            return sb.ToString();
+            return list.ListAsString<string>(buildFunction, separator);
         }
 
         /// <summary>
@@ -277,13 +294,7 @@ namespace WisejLib
         /// <returns>A string that contains all elements of the list</returns>
         public static string ListAsString(this List<int> list, Func<int, string> buildFunction, string separator = ", ")
         {
-            var sb = new StringBuilder();
-            for (int i = 0; i < list.Count; i++)
-            {
-                var expression = buildFunction(list[i]);
-                sb.Append(i > 0 ? $"{separator}{expression}" : expression);
-            }
-            return sb.ToString();
+            return list.ListAsString<int>(buildFunction, separator);
         }
 
         /// <summary>
