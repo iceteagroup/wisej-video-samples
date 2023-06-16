@@ -1,4 +1,4 @@
-﻿namespace TalkCRM.Classes
+﻿namespace WisejLib
 {
     /// <summary>
     /// LookupPair ist the standard data structure to be used with the Lookup class.

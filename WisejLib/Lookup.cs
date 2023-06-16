@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Wisej.Web;
+﻿using Wisej.Web;
 
-namespace TalkCRM.Classes
+namespace WisejLib
 {
     /// <summary>
     /// Help dealing with lookup combo boxes, based on the LookupPair class

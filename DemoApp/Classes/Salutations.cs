@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using TalkCRM.Classes;
+using DemoApp.Classes;
+using WisejLib;
 
 namespace DemoApp.Classes
 {
