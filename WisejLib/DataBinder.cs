@@ -39,6 +39,12 @@ namespace WisejLib
         /// </summary>
         public bool BindLabels { get; set; } = false;
 
+        public bool Cancelling { 
+            get => _Cancelling;
+            set => _Cancelling = value;
+        }
+        private bool _Cancelling;
+
         /// <summary>
         /// Set this property to an instance of your data record
         /// </summary>
@@ -201,6 +207,8 @@ namespace WisejLib
         /// <param name="propertyName">THis property is used to update the associated control</param>
         private void Refresh(string propertyName)
         {
+            if(Cancelling)
+                return;
             // A property can be bound to multiple controls
             foreach (var binding in Bindings)
             {
@@ -228,6 +236,8 @@ namespace WisejLib
         /// </summary>
         private void Data_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (Cancelling)
+                return;
             Refresh(e.PropertyName);
         }
 
@@ -238,6 +248,8 @@ namespace WisejLib
         /// </summary>
         private void Control_Validating(object sender, CancelEventArgs e)
         {
+            if (Cancelling)
+                return;
             Refresh(sender as Control);
         }
 
