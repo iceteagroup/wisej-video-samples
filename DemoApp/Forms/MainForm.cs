@@ -30,7 +30,7 @@ namespace DemoApp.Forms
             // add a sub level but only if there is at least 1 navigation item underneath
             NavBarGroup = "Administration";
             if (user.HasRight(DbPermission.PERM_Addresses))
-                AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => Utils.NotImplemented());
+                AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => CreateMdiChildForm<UserListForm>());
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace DemoApp.Forms
             int tryCount = 3;
 
             // if Autologin is true, loginname and password must have reasonable content
-            bool AutoLogin = false;
+            bool AutoLogin = true;
             string loginname = "JOE";
             string password = null;
 
