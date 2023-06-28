@@ -81,7 +81,7 @@ namespace WisejLib
         /// Retrieves the table name from the Table attribute. If the attribute is missing, the class name is used.
         /// This property uses lazy loading so the attribute is only queried once
         /// </summary>
-        public string Tablename
+        protected string Tablename
         {
             get
             {
