@@ -30,7 +30,7 @@ namespace DemoApp.Forms
             // add a sub level but only if there is at least 1 navigation item underneath
             NavBarGroup = "Administration";
             if (user.HasRight(DbPermission.PERM_Addresses))
-                AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => CreateMdiChildForm<UserListForm>());
+                AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => CreateMdiChildForm<UserListForm>(""));
         }
 
         /// <summary>
@@ -107,10 +107,10 @@ namespace DemoApp.Forms
             // Fonts are created only once and can be used everywhere
             Globals.InitFonts(this.Font);
 
-            var AppName = Application.Title;
+            var appName = Application.Title;
 
             // it is assumned that the sqlite database is in the same directory as the executable
-            DB.ConnectionString = $"Data Source={AppName}.sqlite;";
+            DB.ConnectionString = $"Data Source={appName}.sqlite;";
 
             // initialize the database with default content
             Initializer.Execute();

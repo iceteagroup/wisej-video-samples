@@ -44,7 +44,7 @@
             this.MdiTabProperties.BackColor = System.Drawing.Color.LightSteelBlue;
             this.MdiTabProperties.ShowMdiChildMenu = true;
             this.Name = "MainForm";
-            this.Text = "Window1";
+            this.Text = "DemoApp";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
