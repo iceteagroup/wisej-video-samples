@@ -30,7 +30,7 @@ namespace DemoApp.Forms
             // add a sub level but only if there is at least 1 navigation item underneath
             NavBarGroup = "Administration";
             if (user.HasRight(DbPermission.PERM_Addresses))
-                AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => CreateMdiChildForm<UserListForm>(""));
+                AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => CreateMdiChildForm<UserListForm>(nameof(UserListForm)));
         }
 
         /// <summary>
