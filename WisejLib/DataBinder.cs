@@ -18,7 +18,7 @@ namespace WisejLib
     /// This made me look into it and write my own binding class. On creation it scans all controls on a form 
     /// and finds properties of the model class that have the same name.If so, it registers the control together 
     /// with the associated property's PropertyInfo and attaches a Validating event handler to the control. 
-    /// Whenever the focus leaves the bound control, the associated data class ist updated as well.
+    /// Whenever the focus leaves the bound control, the associated data class is updated as well.
     /// Because all model classes are derived from DbEntity and DbEntity implements INotifyPropertyChanged, the 
     /// DataBinder also attaches to the PropertyChanged event and gets notified when the data changes and the 
     /// control has to be updated.

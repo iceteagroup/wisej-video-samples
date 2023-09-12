@@ -12,6 +12,26 @@ namespace WisejLib
     /// </summary>
     public static class Validator
     {
+        // English
+        //private const string ERR_FieldCannotBeEmpty = "Field '{0}' cannot be empty";
+        //private const string ERR_NotAValidPhoneNumber = "{0} is not a valid phone number";
+        //private const string ERR_InvalidPhoneNumber = "Invalid phone number";
+        //private const string ERR_NotAValidURL = "{0} is not a valid internet address";
+        //private const string ERR_InvalidURL = "Invalid internet address";
+        //private const string ERR_NotAValidIBAN = "{0} is not a valid IBAN";
+        //private const string ERR_InvalidIBAN = "Invalid IBAN";
+        //private const string ERR_Failed = "Failed";
+
+        // German
+        private const string ERR_FieldCannotBeEmpty = "Feld '{0}' darf nicht leer sein";
+        private const string ERR_NotAValidPhoneNumber = "{0} ist keine gültige Telefonnummer";
+        private const string ERR_InvalidPhoneNumber = "Ungültige Telefonnummer";
+        private const string ERR_NotAValidURL = "{0} ist keine gültige nternetaddresse";
+        private const string ERR_InvalidURL = "Ungültige nternetaddresse";
+        private const string ERR_NotAValidIBAN = "{0} ist keine gültige IBAN";
+        private const string ERR_InvalidIBAN = "Ungültige IBAN";
+        private const string ERR_Failed = "Fehlgeschlagen";
+
         /// <summary>
         /// Checks if a condition is true
         /// </summary>
@@ -47,11 +67,6 @@ namespace WisejLib
             InternalCheck(!string.IsNullOrWhiteSpace(value), null, errorText);
         }
 
-        public static void CheckEmpty(string value, string errorText)
-        {
-            InternalCheck(string.IsNullOrWhiteSpace(value), null, errorText);
-        }
-
         /// <summary>
         /// Throws an exception if the Text property of the given control is null or empty.
         /// If error, the control receives the focus
@@ -60,12 +75,7 @@ namespace WisejLib
         /// <param name="label">The labels text is inserted into the error message</param>
         public static void CheckNotEmpty(Control control, Label label)
         {
-            InternalCheck(!string.IsNullOrEmpty(GetControlText(control)), control, $"Field '{label.Text}' cannot be empty");
-        }
-
-        public static void CheckEmpty(Control control, Label label)
-        {
-            InternalCheck(string.IsNullOrEmpty(GetControlText(control)), control, $"Field '{label.Text}' must be empty");
+            InternalCheck(!string.IsNullOrEmpty(GetControlText(control)), control, string.Format(ERR_FieldCannotBeEmpty, label.Text));
         }
 
         /// <summary>
@@ -74,14 +84,24 @@ namespace WisejLib
         /// </summary>
         /// <param name="control">Control whose text is checked. The control receives the focus on error</param>
         /// <param name="errorText">The plain errortext</param>
-        public static void CheckNotEmpty(Control control, string errorText)
+        public static void CheckNotEmpty(Control control, string errorText = null)
         {
+
+            if (string.IsNullOrWhiteSpace(errorText))
+                errorText = string.Format(ERR_FieldCannotBeEmpty, StripLeadingLowercaseLetters(control.Name));
+
             InternalCheck(!string.IsNullOrEmpty(GetControlText(control)), control, errorText);
         }
 
-        public static void CheckEmpty(Control control, string errorText)
+        private static string StripLeadingLowercaseLetters(string value)
         {
-            InternalCheck(string.IsNullOrEmpty(GetControlText(control)), control, errorText);
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (char.IsUpper(value[i]))
+                    return value.Substring(i);
+            }
+
+            return value;
         }
 
         /// <summary>
@@ -91,7 +111,7 @@ namespace WisejLib
         /// <param name="label">The label whose text goes into the error message</param>
         public static void CheckPhoneNumber(Control control, Label label)
         {
-            CheckPhoneNumber(control, $"{label.Text} is not a valid phone number");
+            CheckPhoneNumber(control, string.Format(ERR_NotAValidPhoneNumber, label.Text));
         }
 
         /// <summary>
@@ -99,7 +119,7 @@ namespace WisejLib
         /// </summary>
         /// <param name="control">The control to check and that receives the focus on error</param>
         /// <param name="errorText">The plain errortext</param>
-        public static void CheckPhoneNumber(Control control, string errorText = "Invalid phone number")
+        public static void CheckPhoneNumber(Control control, string errorText = ERR_InvalidPhoneNumber)
         {
             string value = GetControlText(control);
             InternalCheck(string.IsNullOrEmpty(value) || value.IsValidPhoneNumber(), control, errorText);
@@ -112,7 +132,7 @@ namespace WisejLib
         /// <param name="label">The label whose text goes into the error message</param>
         public static void CheckUrl(Control control, Label label)
         {
-            CheckUrl(control, $"{label.Text} is not a valid internet address");
+            CheckUrl(control, string.Format(ERR_NotAValidURL, label.Text));
         }
 
         /// <summary>
@@ -120,7 +140,7 @@ namespace WisejLib
         /// </summary>
         /// <param name="control">The control to check and that receives the focus on error</param>
         /// <param name="errorText">The plain errortext</param>
-        public static void CheckUrl(Control control, string errorText = "Invalid internet address")
+        public static void CheckUrl(Control control, string errorText = ERR_InvalidURL)
         {
             string value = GetControlText(control);
             InternalCheck(string.IsNullOrEmpty(value) || value.IsValidUrl(), control, errorText);
@@ -133,7 +153,7 @@ namespace WisejLib
         /// <param name="label">The label whose text goes into the error message</param>
         public static void CheckIBAN(Control control, Label label)
         {
-            CheckIBAN(control, $"{label.Text} is not a valid IBAN");
+            CheckIBAN(control, string.Format(ERR_NotAValidIBAN, label.Text));
         }
 
         /// <summary>
@@ -141,7 +161,7 @@ namespace WisejLib
         /// </summary>
         /// <param name="control">The control to check and that receives the focus on error</param>
         /// <param name="errorText">The plain errortext</param>
-        public static void CheckIBAN(Control control, string errorText = "Invalid IBAN")
+        public static void CheckIBAN(Control control, string errorText = ERR_InvalidIBAN)
         {
             string value = GetControlText(control);
             InternalCheck(string.IsNullOrEmpty(value) || value.IsValidIBAN(), control, errorText);
@@ -180,8 +200,8 @@ namespace WisejLib
             if (control != null && control.CanFocus)
                 control.Focus();
             if (string.IsNullOrEmpty(errorText))
-                throw new Exception($"Unexpected errorwhile validating {control.Name}");
-            throw new Exception($"Failed|{errorText}");
+                throw new Exception($"Unexpected error while validating {control.Name}");
+            throw new Exception($"{ERR_Failed}|{errorText}");
         }
     }
 }
