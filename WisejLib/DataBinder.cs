@@ -29,9 +29,11 @@ namespace WisejLib
         /// <summary>
         /// parentForm is the cotaining form window. It is required so that DataBinder knows where to search for controls to bind
         /// </summary>
-        public DataBinder(Form parentForm)
+        public DataBinder(Form parentForm, T dataSource = null)
         {
             ParentForm = parentForm ?? throw new ArgumentNullException(nameof(parentForm));
+            if(dataSource != null)
+                DataSource = dataSource;
         }
 
         /// <summary>
