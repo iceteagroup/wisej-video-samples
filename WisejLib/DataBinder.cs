@@ -316,6 +316,9 @@ namespace WisejLib
             /// </summary>
             public void UpdateControl(T data)
             {
+                if (!BoundProperty.CanRead)
+                    return;
+
                 object value = BoundProperty.GetValue(data);
 
                 switch (BoundControl)
@@ -363,6 +366,9 @@ namespace WisejLib
             /// </summary>
             public void UpdateProperty(T data)
             {
+                if (!BoundProperty.CanWrite)
+                    return;
+
                 switch (BoundControl)
                 {
                     case TypedTextBox typedTextBox:
