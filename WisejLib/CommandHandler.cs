@@ -57,6 +57,16 @@ namespace WisejLib
         }
 
         /// <summary>
+        /// Register a cotrol for some specific actions which ist always enabled
+        /// </summary>
+        /// <param name="control">The control to be registered</param>
+        /// <param name="executeCallback">Delegate that is executed when the control's action has to be executed</param>
+        public CommandHandler Register(object control, Action executeCallback)
+        {
+            return Register(control, null, executeCallback);
+        }
+
+        /// <summary>
         /// Register a cotrol for some specific actions
         /// </summary>
         /// <param name="control">The control to be registered</param>
