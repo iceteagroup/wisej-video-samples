@@ -174,8 +174,11 @@ namespace WisejLib
             return list.ListAsString<int>(buildFunction, separator);
         }
 
+        // use System.StringExtensions.RemoveDiacritics
+
         //public static string RemoveDiacritics(this string text)
         //{
+        //    System.StringExtensions.RemoveDiacritics
         //    var normalizedString = text.Normalize(NormalizationForm.FormD);
         //    var stringBuilder = new StringBuilder(capacity: normalizedString.Length);
 
