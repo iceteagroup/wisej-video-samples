@@ -174,6 +174,11 @@ namespace WisejLib
             return list.ListAsString<int>(buildFunction, separator);
         }
 
+        public static string ListAsString(this List<int> list, string separator = ", ")
+        {
+            return list.ListAsString<int>(i => i.ToString(), separator);
+        }
+
         // use System.StringExtensions.RemoveDiacritics
 
         //public static string RemoveDiacritics(this string text)
