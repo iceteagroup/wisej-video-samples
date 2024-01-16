@@ -48,7 +48,20 @@ namespace DemoApp.Forms
 
         private void Command_Edit()
         {
-            Utils.NotImplemented();
+            // find user to be edited
+            var index = Grid.SelectedRows[0].Index;
+            var user = DataList[index];
+
+            if (!UserEditDialog.Execute(user))
+                return;
+
+            // save changes
+            using(var conn = DB.Connection)
+            using(var tx = conn.BeginTransaction())
+            {
+                user.SaveChanges(tx);
+                tx.Commit();
+            }
         }
 
         private void Grid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
