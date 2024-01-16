@@ -65,7 +65,16 @@ namespace DemoApp.Classes
         ///         AddNavItem(NavBarGroupItem, "Users", "Users.svg", item => Utils.NotImplemented());
         ///         
         /// </summary>
-        protected string NavBarGroup { get; set; }
+        protected string NavBarGroup 
+        {
+            get => _NavBarGroup;
+            set 
+            { 
+                _NavBarGroup = value;
+                _NavBarGroupItem = null;
+            }
+        }
+        protected string _NavBarGroup;
 
         /// <summary>
         /// Returns a NavBarGroupItem. Child items can be created under this item.
